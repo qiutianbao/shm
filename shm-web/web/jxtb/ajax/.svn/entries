@@ -1,0 +1,154 @@
+10
+
+dir
+0
+http://svn.chinabigdata.com/svn/km/trunk/cbd.cfw/shm-jxtb/web/jxtb/ajax
+http://svn.chinabigdata.com/svn/km
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+ee90f93b-bdbe-2748-9624-9706d35861ce
+
+ajax_get.jsp
+file
+
+
+
+add
+
+ajax_getsuccess.jsp
+file
+
+
+
+add
+
+ajax_post.jsp
+file
+
+
+
+add
+
+ajax_postsuccess.jsp
+file
+
+
+
+add
+
+ajax_textLoginSucc.jsp
+file
+
+
+
+add
+
+get.jsp
+file
+
+
+
+add
+
+getsuccess.jsp
+file
+
+
+
+add
+
+index.jsp
+file
+
+
+
+add
+
+jQueryJson.jsp
+file
+
+
+
+add
+
+json.jsp
+file
+
+
+
+add
+
+jsonLogin.jsp
+file
+
+
+
+add
+
+jsonsuccess.jsp
+file
+
+
+
+add
+
+load.jsp
+file
+
+
+
+add
+
+loadsuccess.jsp
+file
+
+
+
+add
+
+login.jsp
+file
+
+
+
+add
+
+loginSucc.jsp
+file
+
+
+
+add
+
+post.jsp
+file
+
+
+
+add
+
+postsuccess.jsp
+file
+
+
+
+add
+

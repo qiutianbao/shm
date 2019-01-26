@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <!--测试-->
+
+    <package name="testAction" namespace="/testAction" extends="json-default">
+        <!--查询所有信息-->
+        <action name="loginAction" class="com.jxtb.test.action.TestAction" method="loginAction">
+            <result name="login">/jxtb/back/testLoginAction.jsp</result>
+            <result name="input">/test/back/error.jsp</result>
+        </action>
+        <!-- 进入登录界面 -->
+        <action name="loginAction_*" class="com.jxtb.test.action.TestAction" method="{1}">
+            <result name="success" type="json">
+                <param name="callbackParameter">callback</param>
+                <param name="includeProperties">result.*</param>
+            </result>
+        </action>
+
+        <!--xml测试-->
+        <action name="testAdd" class="com.jxtb.test.action.HXmlAction" method="testAdd">
+            <result name="success">/jxtb/back/testLoginAction.jsp</result>
+            <result name="error">/test/back/error.jsp</result>
+        </action>
+
+    </package>
+
+    <package name="ajaxTest" namespace="/ajaxTest" extends="json-default">
+
+        <action name="ajax_text" class="com.jxtb.test.action.AjaxJsonAction">
+
+            <result type="json"/>
+
+        </action>
+
+        <action name="ajax_get" class="com.jxtb.test.action.AjaxJsonAction" method="ajaxGet">
+            <result name="success">/jxtb/ajax/ajax_getsuccess.jsp</result>
+            <result name="error">/test/ajax/index.jsp</result>
+        </action>
+
+        <action name="ajax_post" class="com.jxtb.test.action.AjaxJsonAction" method="ajaxPost">
+            <result name="success">/jxtb/ajax/ajax_postsuccess.jsp</result>
+            <result name="error">/test/ajax/index.jsp</result>
+        </action>
+
+        <action name="getInfo" class="com.jxtb.test.action.AjaxJsonAction" method="getInfo">
+            <result name="success">/jxtb/ajax/getsuccess.jsp</result>
+            <result name="error">/test/ajax/index.jsp</result>
+        </action>
+
+        <action name="jsonInfo" class="com.jxtb.test.action.AjaxJsonAction" method="jsonInfo">
+            <result name="success">/jxtb/ajax/jsonsuccess.jsp</result>
+            <result name="error">/test/ajax/index.jsp</result>
+        </action>
+
+        <action name="jsonLogin" class="com.jxtb.test.action.AjaxJsonAction" method="jsonLogin">
+            <result name="success">/jxtb/ajax/jsonsuccess.jsp</result>
+            <result name="error">/test/ajax/index.jsp</result>
+        </action>
+
+        <action name="load" class="com.jxtb.test.action.AjaxJsonAction" method="load">
+            <result name="success">/jxtb/ajax/loadsuccess.jsp</result>
+            <result name="error">/test/ajax/index.jsp</result>
+        </action>
+
+        <action name="login" class="com.jxtb.test.action.AjaxJsonAction" method="login">
+            <result name="success">/jxtb/ajax/loginSucc.jsp</result>
+            <result name="error">/test/ajax/index.jsp</result>
+        </action>
+
+        <action name="post" class="com.jxtb.test.action.AjaxJsonAction" method="post">
+            <result name="success">/jxtb/ajax/postsuccess.jsp</result>
+            <result name="error">/test/ajax/index.jsp</result>
+        </action>
+
+    </package>
+
+    <!--表现层-->
+    <package name="centerBack" namespace="/centerBack" extends="json-default">
+        <default-class-ref class="com.jxtb.test.action.CenterBackAction" />
+        <!--查询所有信息-->
+        <action name="searchAllInfo" method="searchAllInfo">
+            <result name="success">/jxtb/back/centerBackList.jsp</result>
+            <result name="error">/test/back/error.jsp</result>
+        </action>
+        <!--显示所有信息-->
+        <action name="showAllInfo" method="showAllInfo">
+            <result name="success">/test/back/centerBackPageList.jsp</result>
+            <result name="error">/test/back/error.jsp</result>
+        </action>
+        <!--查询总记录数，获取分页总数-->
+        <action name="searchTotalCount" method="searchTotalCount">
+            <result name="success">/common/page.jsp</result>
+            <result name="error">/test/back/error.jsp</result>
+        </action>
+        <!--查看单个信息，按id号查询-->
+        <action name="searchInfoById"  method="searchInfoById">
+            <result name="success">/test/back/showBackInfo.jsp</result>
+            <result name="error">/test/back/error.jsp</result>
+        </action>
+
+        <!--查看多条信息，按id号查询-->
+        <!--根据id查询所有-->
+        <action name="searchAllUser"  method="searchAllUser">
+            <result name="success">/test/back/showAllBackInfo.jsp</result>
+            <result name="error">/test/back/error.jsp</result>
+        </action>
+
+        <!--查看多条信息，导出信息-->
+        <action name="exportUserInfo"  method="exportUserInfo">
+            <result name="success" type="redirectAction">searchAllInfo</result>
+            <result name="error">/test/back/error.jsp</result>
+        </action>
+
+        <!--导航条信息查询，根据用户类型-->
+        <action name="showNavigationInfo" method="showNavigationInfo">
+            <result name="success">/test/back/centerBackPageList.jsp</result>
+            <result name="error">/test/back/error.jsp</result>
+        </action>
+
+        <!--查看简介-->
+        <action name="searchBriefInfo" method="searchBriefInfo">
+            <result name="success">/test/back/showBreif.jsp</result>
+            <result name="error">/test/back/error.jsp</result>
+        </action>
+
+        <!--新增前查询，返回到编辑页面-->
+        <action name="preAddBackInfo" method="preAddBackInfo">
+            <result name="success">/test/back/editBackInfo.jsp</result>
+            <result name="error">/test/back/error.jsp</result>
+        </action>
+        <!--修改前查询，返回到编辑页面-->
+        <action name="preUpdateBackInfo" method="preUpdateBackInfo">
+            <result name="success">/test/back/editBackInfo.jsp</result>
+            <result name="error">/test/back/error.jsp</result>
+        </action>
+        <!--新增、修改-->
+        <action name="editBackInfo"  method="editBackInfo">
+            <result type="json">
+                <param name="includeProperties">
+                    status.*
+                </param>
+            </result>
+            <result name="error">/test/back/error.jsp</result>
+        </action>
+        <!--删除-->
+        <action name="deleteBackInfo"  method="deleteBackInfo">
+            <result type="json">
+                <param name="includeProperties">
+                    status.*
+                </param>
+            </result>
+            <result name="error">/test/back/error.jsp</result>
+        </action>
+    </package>
+
+</struts>

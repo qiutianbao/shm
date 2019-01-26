@@ -1,0 +1,8 @@
+#//    km系统webservice访问验证用户名、密码
+wsClient.username = rayyang
+wsClient.password = 123456
+
+##for sms send tianfeng
+msg.serviceURL=http://sdk.entinfo.cn:8061/webservice.asmx
+msg.sn=SDK-SKY-010-02918
+msg.password=653698

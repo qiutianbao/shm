@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- 第三部分： 把映射文件放到核心配置文件中 必须的-->
+        <mapping resource="hibernate/hbm/crud/Customer.hbm.xml"/>
+        <mapping resource="hibernate/hbm/crud/JUser.hbm.xml"/>
+        <mapping resource="hibernate/hbm/crud/LinkMan.hbm.xml"/>
+        <mapping resource="hibernate/hbm/crud/ManageRole.hbm.xml"/>
+        <mapping resource="hibernate/hbm/crud/ManageUser.xml"/>
+
+    </session-factory>
+</hibernate-configuration>
+

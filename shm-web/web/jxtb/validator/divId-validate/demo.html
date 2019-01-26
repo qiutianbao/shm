@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>divId-validate</title>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+    <link type="text/css" rel="stylesheet" href="/css/jdd/checkSubmit.css"/>
+    <script type="text/javascript" src="/js/common/jquery-1.9.1.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+
+        });
+        function divId(elementId) {
+            return document.getElementById(elementId);
+        }
+
+        /*用户名验证*/
+        function checkUserName(txt) {
+            txt.style.color = "#000";
+            var user = $("#username").val();
+            var userId = divId("tip_username");
+            userId.innerHTML = "";
+            var reg = /^[a-zA-Z][\w_]{2,16}$/;
+            if (user == "" || user == "请输入用户名" || user == null) {
+                userId.innerHTML = "";
+            } else if (user.length < 3) {
+                userId.innerHTML = "<div class='register_prompt'>用户名长度不能小于3位</div>";
+                return false;
+            } else if (user.length > 15) {
+                userId.innerHTML = "<div class='register_prompt'>用户名长度不能大于15位</div>";
+                return false;
+            } else if (user != "" && reg.test(user) == true) {   //非空进行校验
+                console.log('验证通过');
+            } else if (reg.test(user) == false) {
+                userId.innerHTML = "<div class='register_prompt'>请输入非数字开头的3-16位英文字符、数字或者下划线，英文字母不区分大小写</div>";
+                return false;
+            }
+        }
+
+        function showUserName(txt) {
+            txt.style.color = "#000";
+            var userId = divId("tip_username");
+            userId.innerHTML = "<div class='register_prompt'>非数字开头的3-16位英文字符、数字或者下划线，英文字母不区分大小写</div>";
+        }
+
+    </script>
+</head>
+
+<body>
+<form action="" id="form1">
+    <table>
+        <tr>
+            <td>账号:<input type="text" name="username" id="username" onblur="checkUserName(this)" onfocus="showUserName(this)" style="width:150px;"/></td>
+            <td>
+                <div id="tip_username"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>密码:<input type="password" id="password" style="width:150px;"/></td>
+            <td>
+                <div id="tip_password"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>重复:<input type="password" id="confirm_password" style="width:150px;"/></td>
+            <td>
+                <div id="tip_confirm_password"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>邮箱:<input type="text" id="email" style="width:150px;"/></td>
+            <td>
+                <div id="tip_email"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>手机:<input type="text" id="phone" style="width:150px;"/></td>
+            <td>
+                <div id="tip_phone"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>国籍:<select id="nation">
+                <option value="">选择</option>
+                <option value="中国">中国</option>
+            </select></td>
+            <td>
+                <div id="tip_nation"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>语种:<input type="checkbox" name="lge" class="ckb" id="checkbox1" value="1"/>粤语&nbsp;<input
+                    type="checkbox" name="lge" class="ckb" id="checkbox2" value="2"/>国语
+            </td>
+            <td>
+                <div id="tip_lge"></div>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="submit"/><input type="reset" value="reset"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,47 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" >
+<html>
+	<head>
+		<title>validate验证框架演示</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta http-equiv="Page-Enter" content="revealTrans(duration=1, transition=2)"/><meta http-equiv="Page-Exit" content="revealTrans(duration=1, transition=2)"/>
+		<link type="text/css" rel="stylesheet" href="../js/validate/css/validate.css" /> 
+		<script src="./jquery-1.6.4.js" language="javascript"></script><script src="../js/validate/talent-validate-all-init.js" language="javascript"></script><script src="./demo.js" language="javascript"></script>
+		<script src="./jquery-1.6.4.js" language="javascript"></script>
+		</head><body>
+			<form name="form1">
+				id1<input type="text" value="dd" id='id1'/><br/>
+				
+				<div id='id1_msgId' style='border-bottom:1px solid #232323;padding:5px;'></div>
+				<br/>
+				
+				n1<input type="text" value="dd" name="n1" id='n1_id1'/><br/>
+				n1<input type="text" value="dd" name="n1" id='n1_id2'/><br/>
+				n1<input type="text" value="dd" name="n1" id='n1_id3'/><br/>
+				
+				<div id='n1_id1_msg' style='border-bottom:1px solid #232323;width:400px;height:12px;padding:5px;'></div>
+				<div id='n1_id2_msg' style='border-bottom:1px solid #232323;width:400px;height:12px;padding:5px;'></div>
+				<div id='n1_id3_msg' style='border-bottom:1px solid #232323;width:400px;height:12px;padding:5px;'></div>
+				
+				<input type="button" class='button' value="验证" onclick="tt.validate()"/>
+				
+			
+			</form>
+		</body>
+		<script id="talent_script">
+			//第一种方式：直接指定msgId
+			var f1 =new tt.Field("id1","","id1").setMsgId("id1_msgId");
+			tt.vf.req.add(f1);
+			new tt.LV().set(4, 15).add(f1);
+			
+			//第二种方式：覆盖计算msgId的函数getMsgId
+			var f2 =new tt.Field("n1","n1","");
+			f2.getMsgId = function(element) {  //element是html元素
+				return element.id + "_msg";
+			}
+			
+			tt.vf.req.add(f2);
+			new tt.LV().set(4, 15).add(f2);
+			
+		</script>
+</html>

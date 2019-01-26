@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+			http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/task
+		http://www.springframework.org/schema/task/spring-task-4.0.xsd">
+
+    <!-- 打开注解模式 -->
+    <context:annotation-config />
+    <!-- 扫描注解包 -->
+    <context:component-scan base-package="com.jxtb" />
+
+    <!--开启这个配置，spring才能识别@Scheduled注解 ,定时任务 -->
+    <task:annotation-driven />
+
+    <!-- 引入属性文件 -->
+    <!--  <context:property-placeholder location="classpath:jdbc.properties" />-->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:properties/jdbc.properties</value>
+                <value>classpath:properties/dk-config.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 配置文件读取器，可在class中注解的方式获取properties文件中的内容  -->
+    <bean id="propertiesDkReader" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath:properties/ws-config.properties</value>
+                <value>classpath:properties/dk-config.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="webServiceConfigs" class="com.util.WebServiceConfigs" >
+        <property name="dkServiceUrl" value="${dkServiceUrl}"/>
+    </bean>
+
+    <!-- Hibernate配置 -->
+    <!-- 数据源配置,使用应用内的DBCP数据库连接池 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${driverClass}" />
+        <property name="jdbcUrl" value="${jdbcUrl}" />
+        <property name="user" value="${user}" />
+        <property name="password" value="${password}" />
+
+        <property name="acquireIncrement" value="${acquireIncrement}" />
+        <property name="idleConnectionTestPeriod" value="${idleConnectionTestPeriod}" />
+        <property name="initialPoolSize" value="${initialPoolSize}" />
+        <property name="minPoolSize" value="${minPoolSize}" />
+        <property name="maxPoolSize" value="${maxPoolSize}" />
+        <property name="numHelperThreads" value="${numHelperThreads}" />
+        <property name="preferredTestQuery" value="${preferredTestQuery}" />
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <!--是否将运行期生成的SQL输出到日志以供调试 -->
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <!--格式化显示sql语句  -->
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+                <prop key="hibernate.use_outer_join">${hibernate.use_outer_join}</prop>
+                <prop key="hibernate.jdbc.fetch_size">${hibernate.jdbc.fetch_size}</prop>
+                <prop key="hibernate.jdbc.batch_size">${hibernate.jdbc.batch_size}</prop>
+                <prop key="hibernate.jdbc.batch_versioned_data">${hibernate.jdbc.batch_versioned_data}</prop>
+                <prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+                <prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+                <prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop>
+                <prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
+                <prop key="hibernate.current_session_context_class">${hibernate.current_session_context_class}</prop>
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+                <prop key="javax.persistence.validation.mode">${javax.persistence.validation.mode}</prop>
+                <prop key="hibernate.search.default.directory_provider">${hibernate.search.default.directory_provider}</prop>
+                <prop key="hibernate.search.default.indexBase">/${hibernate.search.default.indexBase}</prop>
+                <prop key="hibernate.search.default.refresh">${hibernate.search.default.refresh}</prop>
+                <prop key="hibernate.search.default.indexwriter.max_merge_docs">${hibernate.search.default.indexwriter.max_merge_docs}</prop>
+                <prop key="hibernate.search.default.indexwriter.ram_buffer_size">${hibernate.search.default.indexwriter.ram_buffer_size}</prop>
+                <prop key="hibernate.search.default.optimizer.operation_limit.max">${hibernate.search.default.optimizer.operation_limit.max}</prop>
+                <prop key="hibernate.search.default.optimizer.transaction_limit.max">${hibernate.search.default.optimizer.transaction_limit.max}</prop>
+            </props>
+        </property>
+        <property name="dataSource" ref="dataSource" />
+        <property name="packagesToScan">
+            <list>
+                <value>com.jxtb.sys.model</value>
+                <value>com.jxtb.test.entity</value>
+            </list>
+        </property>
+        <!--hibernate xml-->
+        <property name="configLocation">
+            <value>classpath:hibernate/hibernate.cfg.xml</value>
+        </property>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation" value="classpath:sqlmap/sqlmap-config.xml" />
+        <!-- 扫描方式加载mybatis的mapper文件 -->
+        <property name="mapperLocations" value="classpath*:sqlmap/mapper/oracle/sys/*.xml"/>
+        <property name="dataSource" ref="dataSource" />
+        <property name="databaseIdProvider" ref="databaseIdProvider" />
+    </bean>
+    <!-- mybatis的mapper文件对应接口包 -->
+    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.jxtb.sys.mapper" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+    <!-- _databaseId处理器，在mapper文件中可使用_databaseId来判断数据库类型 -->
+    <bean id="databaseIdProvider" class="com.core.support.JxtbDatabaseIdProvider">
+        <property name="dbDialect" value="${jdbc.dialect}"/>
+    </bean>
+
+    <!--配置一个HibernateTemplate实例-->
+    <bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate" >
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!--配置一个JdbcTemplate实例-->
+    <bean id="jdbcTemplate"  class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!-- 配置SqlSessionTemplate -->
+    <bean id="sessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0"  ref="sqlSessionFactory" />
+    </bean>
+
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+    </bean>
+
+    <!-- 开启注解模式 -->
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+
+    <!--xml 方式-->
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="save*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="add*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="create*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="insert*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="update*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="merge*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="delete*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="del*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="remove*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+            <tx:method name="put*" propagation="REQUIRED" />
+            <tx:method name="use*" propagation="REQUIRED"/>
+            <!--hibernate4必须配置为开启事务 否则 getCurrentSession()获取不到-->
+            <tx:method name="get*" propagation="REQUIRED" read-only="true" />
+            <tx:method name="count*" propagation="REQUIRED" read-only="true" />
+            <tx:method name="find*" propagation="REQUIRED" read-only="true" />
+            <tx:method name="search*" propagation="REQUIRED" read-only="true" />
+            <tx:method name="list*" propagation="REQUIRED" read-only="true" />
+            <tx:method name="*" propagation="REQUIRED" read-only="true" rollback-for="java.lang.Exception"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- 配置切点 -->
+    <aop:config>
+        <aop:pointcut expression="execution(* com.jxtb.test.service.impl.*.*(..))" id="cut"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="cut"/>
+    </aop:config>
+
+    <import resource="spring/xml/spring-test.xml"/>
+
+    <!-- <import resource="spring/beans-cache.xml"/>
+      <import resource="spring/beans-thread.xml"/>
+      <import resource="spring/beans-message.xml"/>-->
+
+</beans>

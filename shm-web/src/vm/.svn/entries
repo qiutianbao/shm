@@ -1,0 +1,49 @@
+10
+
+dir
+0
+http://svn.chinabigdata.com/svn/km/trunk/cbd.cfw/shm-jxtb/src/vm
+http://svn.chinabigdata.com/svn/km
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+ee90f93b-bdbe-2748-9624-9706d35861ce
+
+foot.vm
+file
+
+
+
+add
+
+top.vm
+file
+
+
+
+add
+
+velocityTestIndex.vm
+file
+
+
+
+add
+

@@ -1,0 +1,98 @@
+10
+
+dir
+0
+http://svn.chinabigdata.com/svn/km/trunk/cbd.cfw/shm-core/resource/hibernate/hbm
+http://svn.chinabigdata.com/svn/km
+add
+
+
+
+
+
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+ee90f93b-bdbe-2748-9624-9706d35861ce
+
+Answers.hbm.xml
+file
+
+
+
+add
+
+AttestationInfo.hbm.xml
+file
+
+
+
+add
+
+CqValidateInfo.hbm.xml
+file
+
+
+
+add
+
+Enterprise.hbm.xml
+file
+
+
+
+add
+
+Product.hbm.xml
+file
+
+
+
+add
+
+Questions.hbm.xml
+file
+
+
+
+add
+
+ReddereIusInfo.hbm.xml
+file
+
+
+
+add
+
+Resource.hbm.xml
+file
+
+
+
+add
+
+Role.hbm.xml
+file
+
+
+
+add
+
+User.hbm.xml
+file
+
+
+
+add
+

@@ -1,0 +1,242 @@
+@charset "gb2312";
+/* CSS Document */
+.float{
+    position:absolute;
+    z-index:1;
+}
+body{
+    margin:0;
+    margin-top:3px;
+    padding:0;
+    font-size:12px;
+    line-height:20px;
+    color:#333;
+}
+a {
+    color:#333333;
+    text-decoration: none;
+}
+a:hover{
+    color:#ff7300;
+}
+ul,li,ol,h1,dl,dd{
+    list-style:none;
+    margin:0px;
+    padding:0px;
+}
+#header{
+    width:980px;
+    height:135px;
+    background-image:url(../images/guimei/guimei_h_bg.jpg);
+    background-repeat:no-repeat;
+    margin-left:auto;
+    margin-right:auto;
+    background-position: -23px 0px;
+}
+/*右上方菜单 购物车 帮助中心 加入收藏 设为首页等样式*/
+.header_top{
+    width:450px;
+    height:40px;
+    float:right;
+    padding:10px 0px 0px 0px;
+    clear:both;
+
+}
+.header_top ul li{
+    float:left;
+}
+.pic{
+    background-image:url(../images/guimei/guimei_icon.gif);
+    background-repeat:no-repeat;
+    width:28px;
+    height:25px;
+}
+.pic2{background-position:-28px 0px;}
+.pic3{background-position:-84px 0px;}
+.pic4{background-position:-112px 0px;}
+.top_menu_text{
+    text-align:center;
+    padding: 5px 5px 0px 5px;
+}
+.btn{
+    padding: 5px 5px 0px 5px;
+    text-align:center;
+    width:38px;
+    background-position:0px -25px;
+}
+.header_middle{
+    width:500px;
+    float:right;
+    height:35px;
+    clear:both;
+    padding-top:10px;
+    color:#636362;
+    letter-spacing:3px;
+}
+.nav{
+    clear:both;
+    width:100%;
+    padding-top:5px;
+}
+.nav li {
+    width:84px;
+    float:left;
+    text-align:center;
+    font-weight:bold;
+}
+.nav li a{
+    padding:8px 10px;line-height:32px;
+    color:#333;
+    font-size:14px;
+}
+.nav ul li a:hover{
+    background-image:url(../images/guimei/guimei_nav_bg.gif);
+    background-repeat:no-repeat;
+    background-position:0px -5px ;
+}
+
+#main{
+    width:980px;
+    margin-left:auto;
+    margin-right:auto;
+}
+.cat,.content,.sidebar{
+    float:left;
+    height:100%;
+}
+.cat{
+    width:194px;
+    height:606px;
+    padding:38px 0px 0px 0px;
+    background:url(../images/guimei/guimei_bg.gif) no-repeat;
+    padding-left:10px;
+}
+.cat_class{
+    font-size:14px;
+    color:#ff7300;
+    font-weight:bold;
+    float:none;
+    clear:both;
+    line-height:28px;
+}
+.cat_li{
+    color:#636362;
+    width:58px;
+    line-height:24px;
+    float:left;
+}
+.content{
+    width:530px;
+    padding-top:5px;
+}
+.adRotator{
+    margin-left:auto;
+    margin-right:auto;
+    width:524px;
+    height:190px;
+}
+.number_bg{
+    position:relative;
+    z-index:2;
+    left:200px;
+    top:-25px;
+    width:200px;
+    text-align:center;
+}
+.advers{
+    font-weight: bold;
+    color: #FFF;
+    background-color:#FFCA95;
+    display: block;
+    float: left;
+    height: 18px;
+    width: 20px;
+    border: 1px solid #FFBA75;
+    margin-left: 5px;
+}
+.advers:hover{
+    color: #FFF;
+}
+.shopping{
+    background-image:url(../images/guimei/guimei_bg.gif);
+    background-repeat:no-repeat;
+    background-position:-210px -205px;
+    margin-left:auto;
+    margin-right:auto;
+    width:510px;
+    height:415px;
+    margin-top:10px;
+    padding-top:30px;
+    padding-left:10px;
+    padding-right:10px;
+}
+.shopping_images{
+    float:left;
+    width:170px;
+    text-align:center;
+    height:90px;
+}
+.shopping_text{
+    float:left;
+    width:170px;
+    text-align:center;
+    height:45px;
+}
+.sidebar{
+    background-image:url(../images/guimei/guimei_bg.gif);
+    background-repeat:no-repeat;
+    background-position:-740px 0;
+    width:245px;
+    height:260px;
+    padding-top:180px;
+}
+#dome{
+    overflow:hidden; /*溢出的部分不显示*/
+    height:240px;
+    width:215px;
+    padding-left:20px;
+    padding-right:10px;
+}
+#dome dl{
+    clear:both;
+    padding-top:10px;
+}
+#dome dt{
+    width:60px;
+    height:50px;
+    float:left;
+    border:solid 1px #666;
+    margin-right:10px;
+}
+#dome dd{
+    padding-top:15px;
+}
+.tab{
+    width:233px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:20px;
+    height:202px;
+}
+.tab dt{
+    float:left;
+    height:32px;
+}
+.tab dd{
+    clear:both;
+    height:170px;
+}
+
+#footer{
+    width:980px;
+    margin-left:auto;
+    margin-right:auto;
+    height:150px;
+    padding-top:10px;
+    clear:both;
+}
+.copyright{
+    width:100%;
+    text-align:center;
+    line-height:20px;
+}

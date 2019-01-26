@@ -1,0 +1,86 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" >
+<html>
+	<head>
+		<title>validate验证框架演示</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta http-equiv="Page-Enter" content="revealTrans(duration=1, transition=2)"/><meta http-equiv="Page-Exit" content="revealTrans(duration=1, transition=2)"/>
+		<link type="text/css" rel="stylesheet" href="../js/validate/css/validate.css" /> 
+		<script src="./jquery-1.6.4.js" language="javascript"></script><script src="../js/validate/talent-validate-all-init.js" language="javascript"></script><script src="./demo.js" language="javascript"></script>
+		<script src="./jquery-1.6.4.js" language="javascript"></script>
+		</head><body>
+			<form name="form1">
+				
+				<div  style='border:1px solid #9BDF70;margin:4px;'>
+				根据name来取消和添加验证<br/><br/>
+				n1<input type="text" value="" name="n1"/>
+				<br/>
+				n2<input type="text" value="" name="n2"/>
+				<br/><br/>
+				<input type="button" class='button' value="取消验证" onclick="ttReqV.rm('n1', 'n2');"/><!-- 所有验证器都有remove()函数 -->
+				<input type="button" class='button' value="添加验证" onclick="ttReqV.add('n1', 'n2');"/><!-- 所有验证器都可以通过add()函数来添加要验证的字段 -->
+				
+				</div>
+				<br/>
+				<div  style='border:1px solid #9BDF70;margin:4px;'>
+				根据id来取消和添加验证<br/><br/>
+				id1<input type="text" value=""  id='id1'/>
+				<br/>
+			    id2<input type="text" value=""  id='id2'/>
+				<br/><br/>
+				<input type="button" class='button' value="取消验证" onclick="ttReqV.rmId('id1', 'id2');"/><!-- 所有验证器都有remove()函数 -->
+				<input type="button" class='button' value="添加验证" onclick="ttReqV.addId('id1', 'id2');"/><!-- 所有验证器都可以通过add()函数来添加要验证的字段 -->
+				
+				</div>
+				
+				<div  style='border:1px solid #9BDF70;margin:4px;'>
+				根据field来取消和添加验证<br/><br/>
+				field1<input type="text" value=""  id='field1'/>
+				<br/>
+			    field2<input type="text" value=""  id='field2'/>
+				<br/><br/>
+				<input type="button" class='button' value="取消验证" onclick="rmField();"/><!-- 所有验证器都有remove()函数 -->
+				<input type="button" class='button' value="添加验证" onclick="addField();"/><!-- 所有验证器都可以通过add()函数来添加要验证的字段 -->
+				
+				</div>
+				
+				<div  style='border:1px solid #9BDF70;margin:4px;'>
+				<br/>混合取消和添加验证<br/>
+				<input type="button" class='button' value="混合取消验证" onclick="mixRmField();"/><!-- 所有验证器都有remove()函数 -->
+				<input type="button" class='button' value="混合添加验证" onclick="mixAddField();"/><!-- 所有验证器都可以通过add()函数来添加要验证的字段 -->
+				
+				</div>
+			
+				<br/>
+				<input type="button" class='button' value="验证" onclick="tt.validate()"/>
+			</form>
+		</body>
+		<script id="talent_script">
+			var ttReqV = tt.vf.req;
+			ttReqV.add("n1", "n2").addId('id1', 'id2');
+			
+			
+			var field1 = new tt.Field("","","field1");
+			var field2 = new tt.Field("","","field2");
+			ttReqV.add(field1, field2);
+			
+			function rmField(){
+				ttReqV.rm(field1, field2);
+			}
+			function addField(){
+				ttReqV.add(field1, field2);
+			}
+			
+			//混合取消和添加验证
+			function mixRmField(){
+				ttReqV.rm(field1, field2, "n1");
+				ttReqV.rmId("id1");
+			}
+			function mixAddField(){
+				ttReqV.add(field1, field2, "n1");
+				ttReqV.addId("id1");
+			}
+			
+			
+		</script>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <!-- 设置struts的Action请求的后缀，支持多个时以逗号隔开。 -->
+    <constant name="struts.action.extension" value="action" />
+    <!-- struts常量配置 -->
+    <constant name="struts.i18n.encoding" value="utf-8"/>
+    <constant name="struts.objectFactory.spring.autoWire" value="type"/>
+    <constant name="struts.objectFactory" value="spring"/>
+    <constant name="struts.devMode" value="true" />
+    <include file="struts-default.xml"/>
+    <!-- 图片附件默认最大为10M-->
+    <constant name="struts.multipart.maxSize" value="10485760"/>
+    <!--设置模板风格-->
+    <constant name="struts.ui.theme" value="simple"/>
+
+    <!-- 加载配置文件-->
+    <include file="struts/struts-test.xml"/>
+
+
+    <include file="struts/struts-jdd-front-register.xml"/>
+
+</struts>

@@ -1,0 +1,65 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" >
+<html>
+	<head>
+		<title>validate验证框架演示</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta http-equiv="Page-Enter" content="revealTrans(duration=1, transition=2)"/><meta http-equiv="Page-Exit" content="revealTrans(duration=1, transition=2)"/>
+		<link type="text/css" rel="stylesheet" href="../js/validate/css/validate.css" /> 
+		<script src="./jquery-1.6.4.js" language="javascript"></script><script src="../js/validate/talent-validate-all-init.js" language="javascript"></script><script src="./demo.js" language="javascript"></script>
+		</head><body>
+			<form name="form1">
+				Ip1<input type="text" value="dd" name="n1"/><br/>
+				Ip2<select type="text" value="3" name="n2" id='n2' width='140px'>
+					<option value=''></option>
+					<option value='2.2.2.2'>2.2.2.2</option>
+					<option value='dsdf'>dsdf</option>
+					</select>
+					
+					<br/>
+				Ip3<textarea id="n3" cols="40" rows="5">33</textarea>在这里输入东西时，是不会给你作验证的<br/>
+				<br/>
+				<input type="button" class='button' value="验证" onclick="tt.validate();"/>
+			
+			</form>
+		</body>
+		<script id="talent_script">
+			tt.vf.ip.add("n1", "n2");
+			
+			
+			//默认的Conf：
+			tt.Conf = {
+				ver: '3.0.0',
+				
+				errorStyle : 'text',     //默认提供：['text', 'alert']
+				tipStyle : 'tip',        //默认提供：['tip']
+				
+				clearOtherError : false, // 当验证某一元素时，是否隐藏其它字段的错误提示。true 隐藏其它字段的错误提示
+				validateOn : ['keyup', 'focus', 'change'], // 触发验证的事件类型。 
+				
+				clrSpace : true,  //验证时，是否清空输入值两端的空格
+				
+				animate: true,      //是否使用动画(此项配置只有你的页面中引入了jquery.js时才有效)
+				
+				highlight: true,    //当鼠标经过input元素时，是否要把信息突出显示
+				
+				
+				//---------  下面的配置项不建议修改  ----------------
+				pro4MsgId : 'ttTalentMsgId',
+				pro4Star : 'ttTalentReqStarId',
+				
+				eventId : 'talentEventId',
+				
+				errCls: "talentErrMsg",         //错误提示信息的样式
+				tipCls: "talentTipMsg",         //验证通过时，信息的样式
+				errInputCls: "talentErrInput",  //验证不通过时，输入框的样式
+				reqStarCls: "talentReqStar"     // 必须输入项后面紧跟着一个星号的样式
+			};
+		
+		//如果需要修改配置项，参考下面的代码：由于把validateOn设为空了，所以n3只在提交的时候才验证，而不是onfocus。
+		tt.Conf.errCls = "";
+		tt.Conf.validateOn = [];
+		
+		tt.vf.ip.addId("n3");
+		</script>
+</html>
