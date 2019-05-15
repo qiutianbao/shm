@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/shm-core/shm-core.iml" filepath="$PROJECT_DIR$/shm-core/shm-core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/shm-web/shm-web.iml" filepath="$PROJECT_DIR$/shm-web/shm-web.iml" />
-    </modules>
-  </component>
-</project>
